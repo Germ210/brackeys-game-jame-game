@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://chh1du4ku5ldn"]
+
+[ext_resource type="Script" path="res://scenes/playerMovement.gd" id="1_8h2t3"]
+[ext_resource type="Texture2D" uid="uid://dg8mcm2pctvpx" path="res://icon.svg" id="1_ua0gr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1idk2"]
+atlas = ExtResource("1_ua0gr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mrmh"]
+atlas = ExtResource("1_ua0gr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq837"]
+atlas = ExtResource("1_ua0gr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xmld"]
+atlas = ExtResource("1_ua0gr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cedao"]
+atlas = ExtResource("1_ua0gr")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vfixk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1idk2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mrmh")
+}],
+"loop": true,
+"name": &"moveDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cq837")
+}],
+"loop": true,
+"name": &"moveLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xmld")
+}],
+"loop": true,
+"name": &"moveRight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cedao")
+}],
+"loop": true,
+"name": &"moveUp",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jun6j"]
+radius = 67.1863
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_8h2t3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vfixk")
+animation = &"moveUp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jun6j")
+debug_color = Color(0.0958343, 0.639802, 0.312004, 0.42)
