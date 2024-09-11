@@ -1,0 +1,114 @@
+[gd_scene load_steps=15 format=3 uid="uid://tinjtflc1ymf"]
+
+[ext_resource type="Script" path="res://scripts/enemyMovement.gd" id="1_6s5ai"]
+[ext_resource type="Texture2D" uid="uid://cr40gc0psvmwe" path="res://assets/enemies/earlyGame/Mushroom.png" id="2_goomc"]
+[ext_resource type="PackedScene" uid="uid://bdygxl6c37f0m" path="res://scenes/BattleComponent.tscn" id="3_j6etb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xw7t"]
+atlas = ExtResource("2_goomc")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cv0bq"]
+atlas = ExtResource("2_goomc")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_suvpo"]
+atlas = ExtResource("2_goomc")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn5ev"]
+atlas = ExtResource("2_goomc")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnhhk"]
+atlas = ExtResource("2_goomc")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8u04"]
+atlas = ExtResource("2_goomc")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5bv6"]
+atlas = ExtResource("2_goomc")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8wep"]
+atlas = ExtResource("2_goomc")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c08lj"]
+atlas = ExtResource("2_goomc")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rcb7e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xw7t")
+}],
+"loop": true,
+"name": &"idleDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cv0bq")
+}],
+"loop": true,
+"name": &"idleDown_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_suvpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kn5ev")
+}],
+"loop": true,
+"name": &"moveDown",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnhhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8u04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5bv6")
+}],
+"loop": true,
+"name": &"moveLeft",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8wep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c08lj")
+}],
+"loop": true,
+"name": &"moveUp",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ln6ps"]
+radius = 35.1283
+
+[node name="MushroomEnemy" type="CharacterBody2D"]
+script = ExtResource("1_6s5ai")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_rcb7e")
+animation = &"idleDown_1"
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ln6ps")
+
+[node name="BattleComponent" parent="." instance=ExtResource("3_j6etb")]
+
+[connection signal="hit" from="BattleComponent" to="." method="onHit"]
